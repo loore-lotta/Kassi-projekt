@@ -1,0 +1,153 @@
+print("Tere tulemast kassitestile! 🐾")
+print("Vasta iga küsimuse puhul kas A, B, C või D.\n")
+
+Siiami_kass = 0
+Sfinks = 0
+Bengali_kass = 0
+Scottish_fold = 0
+Püha_birma = 0
+Meini_kass = 0
+
+print("1.Kuidas kirjeldaksid oma hommikuid?")
+print("A) Ärkan vara ja olen kohe energiline")
+print("B) Võtan aega, et alustada päeva rahulikult")
+print("C) Vajan kohvi, et funktstioneerida")
+print("D) Lähen kohe seltskonda")
+
+v1 = input("Vali (A/B/C/D): ").strip().lower()
+if v1 == "a":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v1 == "b":
+    Püha_birma += 1
+    Scottish_fold += 1
+elif v1 == "c":
+    Sfinks += 1
+elif v1 == "d":
+    Siiami_kass += 1
+    
+print("2.Mis kirjeldab sind kõige paremini?")
+print("A) Sotsiaalne ja jutukas")
+print("B) Rahulik ja tasakaalukas")
+print("C) Uudishimulik ja seiklushimuline")
+print("D) Iseseisev ja enesekindel")
+    
+v2 = input("Vali (A/B/C/D): ").strip().lower()
+if v2 == "a":
+    Siiami_kass += 1
+elif v2 == "b":
+    Püha_birma += 1
+    Scottish_fold += 1
+elif v2 == "c":
+    Bengali_kass += 1
+elif v2 == "d":
+    Sfinks += 1
+    
+print("3. Kuidas sulle meeldib oma vaba aega veeta?")
+print("A) Õues või trennis")
+print("B) Kodus diivanil sarja vaadates või raamatut lugedes")
+print("C) Seltskonnas – sõpradega juttu ajades")
+print("D) Omas tempos, omaette mõtteid mõlgutades")
+    
+v3 = input("Vali (A/B/C/D): ").strip().lower()
+if v3 == "a":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v3 == "b":
+    Püha_birma += 1
+    Scottish_fold += 1
+elif v3 == "c":
+    Siiami_kass += 1
+elif v3 == "d":
+    Sfinks += 1
+    
+print("4.Kui keegi katkestab su töö või keskendumise, mida sa teed?")
+print("A) Jään rahulikuks ja lahendan olukorra")
+print("B) Ärritun veidi, aga ei pea pikka viha")
+print("C) Ei häiri, mul on alati energiat uueks tegevuseks")
+print("D) Proovin lihtsalt tagasi oma rütmi minna")
+    
+v4 = input("Vali (A/B/C/D): ").strip().lower()
+if v4 == "a":
+    Püha_birma += 1
+elif v4 == "b":
+    Siiami_kass += 1
+    Sfinks += 1
+elif Bengali_kass == "c":
+    Sfinks += 1
+elif v4 == "d":
+    Scottish_fold += 1
+    Meini_kass += 1
+    
+print("5. Mis tüüpi kodu sulle kõige rohkem sobib?")
+print("A) Avar ja seltskonnarikas")
+print("B) Vaikne ja hubane pesa")
+print("C) Minimalistlik ja korras")
+print("D) Looduse lähedal, kus saab vabalt liikuda")
+    
+v5 = input("Vali (A/B/C/D): ").strip().lower()
+if v5 == "a":
+    Meini_kass += 1
+    Siiami_kass += 1
+elif v5 == "b":
+    Püha_birma += 1
+    Scottish_fold += 1
+elif v5 == "c":
+    Sfinks += 1
+elif v5 == "d":
+    Bengali_kass += 1
+    Meini_kass += 1
+ 
+print("6. Kuidas reageerid uutele inimestele?")
+print("A) Olen kohe sõbralik ja jutukas")
+print("B) Olen ettevaatlik, kuni tunnen neid paremini")
+print("C) Olen uudishimulik ja energiline ")
+print("D) Ei ole väga huvitatud, eelistan tuttavat seltskonda")
+    
+v6 = input("Vali (A/B/C/D): ").strip().lower()
+if v6 == "a":
+    Siiami_kass += 1
+    Püha_birma += 1
+elif v6 == "b":
+    Sfinks += 1
+    Scottish_fold += 1
+elif v6 == "c":
+    Bengali_kass += 1
+elif v6 == "d":
+    Meini_kass += 1
+    
+print("7. Kui energiline sa oled??")
+print("A) Väga aktiivne – vajan alati tegevust")
+print("B) Keskmine – naudin nii puhkust kui tegutsemist")
+print("C) Väga rahulik")
+print("D) Kõik sõltub tujust")
+    
+v7 = input("Vali (A/B/C/D): ").strip().lower()
+if v7 == "a":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v7 == "b":
+    Püha_birma += 1
+elif v7 == "c":
+    Scottish_fold += 1
+elif v7 == "d":
+    Siiami_kass += 1
+    Sfinks += 1
+    
+print("8. Kui iseseisev oled?")
+print("A) Väga – mulle meeldib tegutseda omaette")
+print("B) Mõõdukalt – naudin seltskonda, aga ka oma aega")
+print("C) Vähe – tahan alati kellegagi koos olla")
+print("D) Pigem naudin liikumisvabadust ja spontaansust")
+    
+v8 = input("Vali (A/B/C/D): ").strip().lower()
+if v8 == "a":
+    Sfinks += 1
+    Scottish_fold += 1
+elif v8 == "b":
+    Püha_birma += 1
+    Meini_kass += 1
+elif v8 == "c":
+    Siiami_kass += 1
+elif v8 == "d":
+    Bengali_kass += 1
