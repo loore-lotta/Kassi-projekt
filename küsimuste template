@@ -1,0 +1,16 @@
+print("Tere tulemast kassitestile! 🐾")
+print("Vasta iga küsimuse puhul kas A, B, C või D.\n")
+
+siiami_kass = 0
+sfinks = 0
+Bengali_kass = 0
+scottish_fold = 0
+püha_birma = 0
+Meini_kass = 0
+
+print("1. Kas sulle meeldivad suured ja karvased kassid (A) või peenikesed ja elegantsed kassid (B)?")
+v1 = input("Vali (A/B): ").strip().lower()
+if v1 == "a":
+    maine_coon += 1
+elif v1 == "b":
+    siiam += 1
