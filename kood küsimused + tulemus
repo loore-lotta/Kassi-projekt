@@ -1,0 +1,317 @@
+print("Tere tulemast kassitestile! 🐾")
+print("Vasta iga küsimuse puhul kas A, B, C või D.\n")
+
+Siiami_kass = 0
+Sfinks = 0
+Bengali_kass = 0
+Scottish_fold = 0
+Püha_birma = 0
+Meini_kass = 0
+
+tulemus = 0
+
+print("1.Kuidas kirjeldaksid oma hommikuid?")
+print("A) Ärkan vara ja olen kohe energiline")
+print("B) Võtan aega, et alustada päeva rahulikult")
+print("C) Vajan kohvi, et funktstioneerida")
+print("D) Lähen kohe seltskonda")
+
+v1 = input("Vali (A/B/C/D): ").strip().lower()
+if v1 == "a":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v1 == "b":
+    Püha_birma += 1
+    Scottish_fold += 1
+elif v1 == "c":
+    Sfinks += 1
+elif v1 == "d":
+    Siiami_kass += 1
+    
+print("2.Mis kirjeldab sind kõige paremini?")
+print("A) Sotsiaalne ja jutukas")
+print("B) Rahulik ja tasakaalukas")
+print("C) Uudishimulik ja seiklushimuline")
+print("D) Iseseisev ja enesekindel")
+    
+v2 = input("Vali (A/B/C/D): ").strip().lower()
+if v2 == "a":
+    Siiami_kass += 1
+elif v2 == "b":
+    Püha_birma += 1
+    Scottish_fold += 1
+elif v2 == "c":
+    Bengali_kass += 1
+elif v2 == "d":
+    Sfinks += 1
+    
+print("3. Kuidas sulle meeldib oma vaba aega veeta?")
+print("A) Õues või trennis")
+print("B) Kodus diivanil sarja vaadates või raamatut lugedes")
+print("C) Seltskonnas – sõpradega juttu ajades")
+print("D) Omas tempos, omaette mõtteid mõlgutades")
+    
+v3 = input("Vali (A/B/C/D): ").strip().lower()
+if v3 == "a":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v3 == "b":
+    Püha_birma += 1
+    Scottish_fold += 1
+elif v3 == "c":
+    Siiami_kass += 1
+elif v3 == "d":
+    Sfinks += 1
+    
+print("4.Kui keegi katkestab su töö või keskendumise, mida sa teed?")
+print("A) Jään rahulikuks ja lahendan olukorra")
+print("B) Ärritun veidi, aga ei pea pikka viha")
+print("C) Ei häiri, mul on alati energiat uueks tegevuseks")
+print("D) Proovin lihtsalt tagasi oma rütmi minna")
+    
+v4 = input("Vali (A/B/C/D): ").strip().lower()
+if v4 == "a":
+    Püha_birma += 1
+elif v4 == "b":
+    Siiami_kass += 1
+    Sfinks += 1
+elif v4 == "c":
+    Sfinks += 1
+elif v4 == "d":
+    Scottish_fold += 1
+    Meini_kass += 1
+    
+print("5. Mis tüüpi kodu sulle kõige rohkem sobib?")
+print("A) Avar ja seltskonnarikas")
+print("B) Vaikne ja hubane pesa")
+print("C) Minimalistlik ja korras")
+print("D) Looduse lähedal, kus saab vabalt liikuda")
+    
+v5 = input("Vali (A/B/C/D): ").strip().lower()
+if v5 == "a":
+    Meini_kass += 1
+    Siiami_kass += 1
+elif v5 == "b":
+    Püha_birma += 1
+    Scottish_fold += 1
+elif v5 == "c":
+    Sfinks += 1
+elif v5 == "d":
+    Bengali_kass += 1
+    Meini_kass += 1
+ 
+print("6. Kuidas reageerid uutele inimestele?")
+print("A) Olen kohe sõbralik ja jutukas")
+print("B) Olen ettevaatlik, kuni tunnen neid paremini")
+print("C) Olen uudishimulik ja energiline ")
+print("D) Ei ole väga huvitatud, eelistan tuttavat seltskonda")
+    
+v6 = input("Vali (A/B/C/D): ").strip().lower()
+if v6 == "a":
+    Siiami_kass += 1
+    Püha_birma += 1
+elif v6 == "b":
+    Sfinks += 1
+    Scottish_fold += 1
+elif v6 == "c":
+    Bengali_kass += 1
+elif v6 == "d":
+    Meini_kass += 1
+    
+print("7. Kui energiline sa oled??")
+print("A) Väga aktiivne – vajan alati tegevust")
+print("B) Keskmine – naudin nii puhkust kui tegutsemist")
+print("C) Väga rahulik")
+print("D) Kõik sõltub tujust")
+    
+v7 = input("Vali (A/B/C/D): ").strip().lower()
+if v7 == "a":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v7 == "b":
+    Püha_birma += 1
+elif v7 == "c":
+    Scottish_fold += 1
+elif v7 == "d":
+    Siiami_kass += 1
+    Sfinks += 1
+    
+print("8. Kui iseseisev oled?")
+print("A) Väga – mulle meeldib tegutseda omaette")
+print("B) Mõõdukalt – naudin seltskonda, aga ka oma aega")
+print("C) Vähe – tahan alati kellegagi koos olla")
+print("D) Pigem naudin liikumisvabadust ja spontaansust")
+    
+v8 = input("Vali (A/B/C/D): ").strip().lower()
+if v8 == "a":
+    Sfinks += 1
+    Scottish_fold += 1
+elif v8 == "b":
+    Püha_birma += 1
+    Meini_kass += 1
+elif v8 == "c":
+    Siiami_kass += 1
+elif v8 == "d":
+    Bengali_kass += 1
+
+print("9. Kui palju sulle meeldib tähelepanu saada?")
+print('A) Naudin, kui olen tähelepanu keskpunktis')
+print('B) Väärtustan, kui mind märgatakse, aga mitte üleliia')
+print('C) Ma eelistan olla vaikselt taustal')
+print('D) Sõltub päevast')
+
+v9 = input("Vali (A/B/C/D): ").strip().lower()
+if v9 == "a":
+    Siiami_kass += 1
+    Bengali_kass += 1
+elif v9 == "b":
+    Püha_birma += 1
+elif v9 == 'c':
+    Scottish_fold += 1
+    Sfinks += 1
+elif v9 == 'd':
+    Meini_kass += 1
+    
+print("10. Milline ilm tundub sulle kõige mõnusam?")
+print('A) Päikeseline ja soe')
+print('B) Kerge tuul ja kevadine värskus')
+print('C) Pilvine ja hubane')
+print('D) Vahelduv, natuke vihma ja päikest')
+
+v10 = input("Vali (A/B/C/D): ").strip().lower()
+if v10 == "a":
+    Sfinks += 1
+    Siiami_kass += 1
+elif v10 == "b":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v10 == 'c':
+    Scottish_fold += 1
+    Püha_birma += 1
+elif v10 == 'd':
+    Sfinks += 1
+    Bengali_kass += 1
+
+print("11. Mis sa teeksid, kui keegi sööb su friikartuli ilma luba küsimata?")
+print('A) Vastan passiiv-agressiivselt ')
+print('B) Vaikin ja plaanin kättemaksu')
+print('C) Naeran ja varastan nende jäätise tagasi')
+print('D) Vahet pole, friikartulid on nagunii ülehinnatud')
+
+v11 = input("Vali (A/B/C/D): ").strip().lower()
+if v11 == "a":
+    Siiami_kass += 1
+elif v11 == "b":
+    Scottish_fold += 1
+elif v11 == 'c':
+    Bengali_kass += 1
+elif v11 == 'd':
+    Sfinks += 1
+    
+    
+print("12. Kuidas reageerid, kui su äratuskell heliseb?")
+print('A) Hüppan püsti nagu sai rösterist ')
+print('B) Lükkan kella  mitu tundi edasi')
+print('C)Võtan kohe telefoni, et sõnumitele vastata')
+print('D) Jään lihtsalt lebama ja teesklen, et maailm ei eksisteeri')
+
+v12 = input("Vali (A/B/C/D): ").strip().lower()
+if v12 == "a":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v12 == "b":
+    Scottish_fold += 1
+    Püha_birma += 1
+elif v12 == 'c':
+    Siiami_kass += 1
+elif v12 == 'd':
+    Sfinks += 1
+    
+    
+print("13. Kui sa oleksid toit, siis mis sa oleksid?")
+print('A) Sushi – ilus, kallis ja kõik tahavad sind')
+print('B) Kartulipuder – rõõmsameelne ja leplik')
+print('C) Tuline karri – energiline ja ootamatu')
+print('D) Must kohv – lihtne, aga legendaarne')
+
+v13 = input("Vali (A/B/C/D): ").strip().lower()
+if v13 == "a":
+    Siiami_kass += 1
+elif v13 == "b":
+    Scottish_fold += 1
+    Püha_birma += 1
+elif v13 == 'c':
+    Bengali_kass += 1
+elif v13 == 'd':
+    Sfinks += 1
+    Meini_kass += 1
+    
+print("14. Kui sa oleksid superkangelane, mis oleks su võime?")
+print('A) Mõtete lugemine')
+print('B) Nähtamatuks muutumine')
+print('C) Superkiirus')
+print(' D) Teleporteerumine')
+
+v14 = input("Vali (A/B/C/D): ").strip().lower()
+if v14 == "a":
+    Siiami_kass += 1
+elif v14 == "b":
+    Scottish_fold += 1
+elif v14 == 'c':
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v14 == 'd':
+    Püha_birma += 1
+    
+print("15. Kui sulle antakse tasuta pilet kuhu iganes maailmas, kuhu sa lähed?")
+print('A) Taisse')
+print('B) Šotimaale')
+print('C) Indoneesiasse')
+print('D) Spaasse')
+
+v15 = input("Vali (A/B/C/D): ").strip().lower()
+if v15 == "a":
+    Siiami_kass += 1
+    Sfinks += 1
+elif v15 == "b":
+    Scottish_fold += 1
+elif v15 == 'c':
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v15 == 'd':
+    Püha_birma += 1
+    
+print("16. Mis on sinu lemmikhobi")
+print('A)  Saladuste välja nuhkimine')
+print('B) Magamine')
+print('C) Midagi adrenaliini pakkuvat')
+print('D) Jooga')
+
+v16 = input("Vali (A/B/C/D): ").strip().lower()
+if v16 == "a":
+    Siiami_kass += 1
+elif v16 == "b":
+    Scottish_fold += 1
+    Püha_birma += 1
+elif v16 == 'c':
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v16 == 'd':
+    Sfinks += 1
+
+tulemus = max(Siiami_kass, Sfinks, Bengali_kass, Scottish_fold, Püha_birma, Meini_kass)
+
+if tulemus == Siiami_kass:
+    print ('Sulle sobiks enim Siiami kass!\nSiiami kassid on tõelised seltsimehed – jutukad, tähelepanelikud ja armastavad sinu seltskonda! Nad on sõbralikud, hellad ja armastavad pere lähedust – nad tahavad olla sinu elu lahutamatu osa. Üksi olemine ei ole nende teema: nad ihkavad pidevalt inimese või teise kassi kohalolu. Lisaks on nad nutikad ja mänguhimulised – kraapimispostid, mänguasjad ja isegi trikkide õpetamine hoiavad neid õnnelikuna. Siiami kassiga ei hakka kunagi igav, sest tema energia ja uudishimu on nakkav!')
+elif tulemus == Sfinks:
+    print ('Sulle sobiks enim Sfinks!\nSfinksid on tõelised südamesõbrad: iseseisvad, ent samas äärmiselt hellad ja tähelepanelikud. Nad armastavad inimeste ja teiste lemmikloomade seltskonda ning ootavad sind rõõmsalt koju tulles ukse peale tervitama! Sfinksid on intelligentsed, uudishimulikud ja mänguhimulised. Sfinksid naudivad paisid ja tihti leiab neid teki alt sinu kõrval magamas. Sfinksidel on peale kõige väga suur söögiisu ning nad armastavad sooja keskkonda.')
+elif tulemus == Bengali_kass:
+    print ('Sulle sobiks enim Bengali kass!\nBengali kassid on väga sportlikud ja neile meeldib tänu oma jahiinstinktile väga mängida, ronida ning maailma avastada. Inimesele on nad lojaalsed ja kiinduvad inimestesse sügavalt. Neile ei meeldi olla üksi - nad vajavad inimese või teise looma kohalolu. Nad on ka väga jutukad ja teevad äratuntavaid hääli, mis meenutavad metslooma omi! Üllatuseks armastavad Bengali kassid vett, seega võid neid leida endaga koos duši alt.')
+elif tulemus == Scottish_fold:
+    print ('Sulle sobiks enim Scottish Fold!\nIseloomult on nad väga rahulikud kassid ning ei torma kunagi kuhugi. Neil on enda rütm millele nad kindlaks jäävad ja ei lase teistel seda mõjutada, nad tegutsevad pigem omaette. Olenemata sellest meeldib neile vahest ikka mängida ning kui alustavad mängimist siis ikka täiega. Nad armastavad väga oma omanikult tähelepanu saamist ning kaisutamist nii et hoia see kindlalt meeles!')
+elif tulemus == Püha_birma:
+    print ('Sulle sobiks enim Püha Birma!\nIseloomult on nad väga sõbralikud ning uudishimulikud kassid. Tähelepanu ning hoolitsust vajavad pigem tihti, kuid see eest on nad väga rahulikud ja sobilikud perele. Nad ei pelga võõraid inimesi ja armastavad tähelepanu saamist. Nad on alati valmis sinuga mängima ja jutustama!')
+elif tulemus == Meini_kass:
+    print ('Sulle sobiks enim Meini kass!\nIseloomult on nad kohe hommikust saadik energilised ning valmis päeva vallutama. Toas nad liiga kaua ei suvatse olla ja vajav aeg ajalt õues mängimist. Tihti soovivad nad mängida ning sõltuvad palju tähelepanust. Nad ei soovi väga pikaajaliselt üksi olla ehk ole valmis jutukaks keskkonnaks!')
+
+
