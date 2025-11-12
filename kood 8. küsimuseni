@@ -151,3 +151,148 @@ elif v8 == "c":
     Siiami_kass += 1
 elif v8 == "d":
     Bengali_kass += 1
+
+print("9. Kui palju sulle meeldib tähelepanu saada?")
+print('A) Naudin, kui olen tähelepanu keskpunktis')
+print('B) Väärtustan, kui mind märgatakse, aga mitte üleliia')
+print('C) Ma eelistan olla vaikselt taustal')
+print('D) Sõltub päevast')
+
+v9 = input("Vali (A/B/C/D): ").strip().lower()
+if v9 == "a":
+    Siiami_kass += 1
+    Bengali_kass += 1
+elif v9 == "b":
+    Püha_birma += 1
+elif v9 == 'c':
+    Scottish_fold += 1
+    Sfinks += 1
+elif v9 == 'd':
+    Meini_kass += 1
+    
+print("10. Milline ilm tundub sulle kõige mõnusam?")
+print('A) Päikeseline ja soe')
+print('B) Kerge tuul ja kevadine värskus')
+print('C) Pilvine ja hubane')
+print('D) Vahelduv, natuke vihma ja päikest')
+
+v10 = input("Vali (A/B/C/D): ").strip().lower()
+if v10 == "a":
+    Sfinks += 1
+    Siiami_kass += 1
+elif v10 == "b":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v10 == 'c':
+    Scottish_fold += 1
+    Püha_birma += 1
+elif v10 == 'd':
+    Sfinks += 1
+    Bengali_kass += 1
+
+print("11. Mis sa teeksid, kui keegi sööb su friikartuli ilma luba küsimata?")
+print('A) Vastan passiiv-agressiivselt ')
+print('B) Vaikin ja plaanin kättemaksu')
+print('C) Naeran ja varastan nende jäätise tagasi')
+print('D) Vahet pole, friikartulid on nagunii ülehinnatud')
+
+v11 = input("Vali (A/B/C/D): ").strip().lower()
+if v11 == "a":
+    Siiami_kass += 1
+elif v11 == "b":
+    Scottish_fold += 1
+elif v11 == 'c':
+    Bengali_kass += 1
+elif v11 == 'd':
+    Sfinks += 1
+    
+    
+print("12. Kuidas reageerid, kui su äratuskell heliseb?")
+print('A) Hüppan püsti nagu sai rösterist ')
+print('B) Lükkan kella  mitu tundi edasi')
+print('C)Võtan kohe telefoni, et sõnumitele vastata')
+print('D) Jään lihtsalt lebama ja teesklen, et maailm ei eksisteeri')
+
+v12 = input("Vali (A/B/C/D): ").strip().lower()
+if v12 == "a":
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v12 == "b":
+    Scottish_fold += 1
+    Püha_birma += 1
+elif v12 == 'c':
+    Siiami_kass += 1
+elif v12 == 'd':
+    Sfinks += 1
+    
+    
+print("13. Kui sa oleksid toit, siis mis sa oleksid?")
+print('A) Sushi – ilus, kallis ja kõik tahavad sind')
+print('B) Kartulipuder – rõõmsameelne ja leplik')
+print('C) Tuline karri – energiline ja ootamatu')
+print('D) Must kohv – lihtne, aga legendaarne')
+
+v13 = input("Vali (A/B/C/D): ").strip().lower()
+if v13 == "a":
+    Siiami_kass += 1
+elif v13 == "b":
+    Scottish_fold += 1
+    Püha_birma += 1
+elif v13 == 'c':
+    Bengali_kass += 1
+elif v13 == 'd':
+    Sfinks += 1
+    Meini_kass += 1
+    
+print("14. Kui sa oleksid superkangelane, mis oleks su võime?")
+print('A) Mõtete lugemine')
+print('B) Nähtamatuks muutumine')
+print('C) Superkiirus')
+print(' D) Teleporteerumine')
+
+v14 = input("Vali (A/B/C/D): ").strip().lower()
+if v14 == "a":
+    Siiami_kass += 1
+elif v14 == "b":
+    Scottish_fold += 1
+elif v14 == 'c':
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v14 == 'd':
+    Püha_birma += 1
+    
+print("15. Kui sulle antakse tasuta pilet kuhu iganes maailmas, kuhu sa lähed?")
+print('A) Taisse')
+print('B) Šotimaale')
+print('C) Indoneesiasse')
+print('D) Spaasse')
+
+v15 = input("Vali (A/B/C/D): ").strip().lower()
+if v15 == "a":
+    Siiami_kass += 1
+    Sfinks += 1
+elif v15 == "b":
+    Scottish_fold += 1
+elif v15 == 'c':
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v15 == 'd':
+    Püha_birma += 1
+    
+print("16. Mis on sinu lemmikhobi")
+print('A)  Saladuste välja nuhkimine')
+print('B) Magamine')
+print('C) Midagi adrenaliini pakkuvat')
+print('D) Jooga')
+
+v16 = input("Vali (A/B/C/D): ").strip().lower()
+if v16 == "a":
+    Siiami_kass += 1
+elif v16 == "b":
+    Scottish_fold += 1
+    Püha_birma += 1
+elif v16 == 'c':
+    Bengali_kass += 1
+    Meini_kass += 1
+elif v16 == 'd':
+    Sfinks += 1
