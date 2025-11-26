@@ -1,0 +1,219 @@
+import tkinter as tk
+from tkinter import messagebox
+
+# --- Viktoriini loogika ---
+Siiami_kass = 0
+Sfinks = 0
+Bengali_kass = 0
+Scottish_fold = 0
+Püha_birma = 0
+Meini_kass = 0
+kysimus_index = 0
+
+# --- Küsimused ja vastused ---
+kysimused = [
+    ("Kuidas kirjeldaksid oma hommikuid?", ["Ärkan vara ja olen kohe energiline",
+                                             "Võtan aega, et alustada päeva rahulikult",
+                                             "Vajan kohvi, et funktsioneerida",
+                                             "Lähen kohe seltskonda"]),
+    ("Mis kirjeldab sind kõige paremini?", ["Sotsiaalne ja jutukas",
+                                            "Rahulik ja tasakaalukas",
+                                            "Uudishimulik ja seiklushimuline",
+                                            "Iseseisev ja enesekindel"]),
+    ("Kuidas sulle meeldib oma vaba aega veeta?", ["Õues või trennis",
+                                                    "Kodus diivanil sarja vaadates või raamatut lugedes",
+                                                    "Seltskonnas – sõpradega juttu ajades",
+                                                    "Omas tempos, omaette mõtteid mõlgutades"]),
+    ("Kui keegi katkestab su töö või keskendumise, mida sa teed?", ["Jään rahulikuks ja lahendan olukorra",
+                                                                      "Ärritun veidi, aga ei pea pikka viha",
+                                                                      "Ei häiri, mul on alati energiat uueks tegevuseks",
+                                                                      "Proovin lihtsalt tagasi oma rütmi minna"]),
+    ("Mis tüüpi kodu sulle kõige rohkem sobib?", ["Avar ja seltskonnarikas",
+                                                   "Vaikne ja hubane pesa",
+                                                   "Minimalistlik ja korras",
+                                                   "Looduse lähedal, kus saab vabalt liikuda"]),
+    ("Kuidas reageerid uutele inimestele?", ["Olen kohe sõbralik ja jutukas",
+                                              "Olen ettevaatlik, kuni tunnen neid paremini",
+                                              "Olen uudishimulik ja energiline",
+                                              "Ei ole väga huvitatud, eelistan tuttavat seltskonda"]),
+    ("Kui energiline sa oled?", ["Väga aktiivne – vajan alati tegevust",
+                                  "Keskmine – naudin nii puhkust kui tegutsemist",
+                                  "Väga rahulik",
+                                  "Kõik sõltub tujust"]),
+    ("Kui iseseisev oled?", ["Väga – mulle meeldib tegutseda omaette",
+                               "Mõõdukalt – naudin seltskonda, aga ka oma aega",
+                               "Vähe – tahan alati kellegagi koos olla",
+                               "Pigem naudin liikumisvabadust ja spontaansust"]),
+    ("Kui palju sulle meeldib tähelepanu saada?", ["Naudin, kui olen tähelepanu keskpunktis",
+                                                    "Väärtustan, kui mind märgatakse, aga mitte üleliia",
+                                                    "Ma eelistan olla vaikselt taustal",
+                                                    "Sõltub päevast"]),
+    ("Milline ilm tundub sulle kõige mõnusam?", ["Päikeseline ja soe",
+                                                 "Kerge tuul ja kevadine värskus",
+                                                 "Pilvine ja hubane",
+                                                 "Vahelduv, natuke vihma ja päikest"]),
+    ("Mis sa teeksid, kui keegi sööb su friikartuli ilma luba küsimata?", ["Vastan passiiv-agressiivselt",
+                                                                           "Vaikin ja plaanin kättemaksu",
+                                                                           "Naeran ja varastan nende jäätise tagasi",
+                                                                           "Vahet pole, friikartulid on nagunii ülehinnatud"]),
+    ("Kuidas reageerid, kui su äratuskell heliseb?", ["Hüppan püsti nagu sai rösterist",
+                                                       "Lükkan kella mitu tundi edasi",
+                                                       "Võtan kohe telefoni, et sõnumitele vastata",
+                                                       "Jään lihtsalt lebama ja teesklen, et maailm ei eksisteeri"]),
+    ("Kui sa oleksid toit, siis mis sa oleksid?", ["Sushi – ilus, kallis ja kõik tahavad sind",
+                                                    "Kartulipuder – rõõmsameelne ja leplik",
+                                                    "Tuline karri – energiline ja ootamatu",
+                                                    "Must kohv – lihtne, aga legendaarne"]),
+    ("Kui sa oleksid superkangelane, mis oleks su võime?", ["Mõtete lugemine",
+                                                             "Nähtamatuks muutumine",
+                                                             "Superkiirus",
+                                                             "Teleporteerumine"]),
+    ("Kui sulle antakse tasuta pilet kuhu iganes maailmas, kuhu sa lähed?", ["Taisse",
+                                                                             "Šotimaale",
+                                                                             "Indoneesiasse",
+                                                                             "Spaasse"]),
+    ("Mis on sinu lemmikhobi?", ["Saladuste välja nuhkimine",
+                                   "Magamine",
+                                   "Midagi adrenaliini pakkuvat",
+                                   "Jooga"])
+]
+
+# --- Vastuste mõju kassidele (järjekorras A, B, C, D) ---
+vastuste_skoorid = [
+    [("Bengali_kass",1), ("Meini_kass",1), None, ("Siiami_kass",1)],
+    [("Siiami_kass",1), None, ("Bengali_kass",1), ("Sfinks",1)],
+    [("Bengali_kass",1), ("Püha_birma",1), ("Siiami_kass",1), ("Sfinks",1)],
+    [("Püha_birma",1), ("Siiami_kass",1), ("Sfinks",1), ("Scottish_fold",1)],
+    [("Meini_kass",1), ("Püha_birma",1), ("Sfinks",1), ("Bengali_kass",1)],
+    [("Siiami_kass",1), ("Sfinks",1), ("Bengali_kass",1), ("Meini_kass",1)],
+    [("Bengali_kass",1), ("Püha_birma",1), ("Scottish_fold",1), ("Siiami_kass",1)],
+    [("Sfinks",1), ("Püha_birma",1), ("Siiami_kass",1), ("Bengali_kass",1)],
+    [("Siiami_kass",1), ("Püha_birma",1), ("Scottish_fold",1), ("Bengali_kass",1)],
+    [("Sfinks",1), ("Bengali_kass",1), ("Scottish_fold",1), ("Sfinks",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Sfinks",1)],
+    [("Bengali_kass",1), ("Scottish_fold",1), ("Siiami_kass",1), ("Sfinks",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Sfinks",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Püha_birma",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Püha_birma",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Meini_kass",1)]
+]
+
+# --- Loome peaakna ---
+root = tk.Tk()
+root.title("Kassiviktoriin")
+root.geometry("700x500")
+
+# --- Algus Frame ---
+algusaken = tk.Frame(root)
+algusaken.pack(fill="both", expand=True)
+
+pealkiri = tk.Label(algusaken, text="Tere tulemast kassitinderisse!", font=("Garamond", 20))
+pealkiri.pack(pady=50)
+
+viktoriin_frame = tk.Frame(root)
+
+# Küsimuse Label
+kysimus_label = tk.Label(viktoriin_frame, text="", wraplength=650, font=("Garamond", 16))
+kysimus_label.pack(pady=20)
+
+# Vastuse nupud
+vastuse_nupud = []
+for i in range(4):
+    btn = tk.Button(viktoriin_frame, text="", width=60, font=("Garamond", 14), command=lambda i=i: valik(i))
+    btn.pack(pady=5)
+    vastuse_nupud.append(btn)
+
+# --- Funktsioonid viktoriiniks ---
+def kuva_kysimus():
+    kysimus_label.config(text=kysimused[kysimus_index][0])
+    for i, btn in enumerate(vastuse_nupud):
+        btn.config(text=kysimused[kysimus_index][1][i])
+
+def valik(nupp_index):
+    global Siiami_kass, Sfinks, Bengali_kass, Scottish_fold, Püha_birma, Meini_kass, kysimus_index
+    item = vastuste_skoorid[kysimus_index][nupp_index]
+    if item:
+        kass, pts = item
+        if kass == "Siiami_kass": Siiami_kass += pts
+        elif kass == "Sfinks": Sfinks += pts
+        elif kass == "Bengali_kass": Bengali_kass += pts
+        elif kass == "Scottish_fold": Scottish_fold += pts
+        elif kass == "Püha_birma": Püha_birma += pts
+        elif kass == "Meini_kass": Meini_kass += pts
+    kysimus_index += 1
+    if kysimus_index < len(kysimused):
+        kuva_kysimus()
+    else:
+        kuva_tulemus()
+
+def kuva_tulemus():
+    global kysimus_label, vastuse_nupud
+    
+    for btn in vastuse_nupud:
+        btn.pack_forget()
+        
+    kysimus_label.pack_forget()
+        
+    tulemus = max(Siiami_kass, Sfinks, Bengali_kass, Scottish_fold, Püha_birma, Meini_kass)
+    
+    if tulemus == Siiami_kass: message = ("Sulle sobiks enim Siiami kass!\n\n"
+                                          "Siiami kassid on tõelised seltsimehed – jutukad, tähelepanelikud "
+                                          "ja armastavad sinu seltskonda! Nad on sõbralikud, hellad ja "
+                                          "armastavad pere lähedust – nad tahavad olla sinu elu lahutamatu osa."
+                                          "Üksi olemine ei ole nende teema: nad ihkavad pidevalt inimese või"
+                                          "teise kassi kohalolu. Lisaks on nad nutikad ja mänguhimulised"
+                                          "– kraapimispostid, mänguasjad ja isegi trikkide õpetamine hoiavad"
+                                          "neid õnnelikuna. Siiami kassiga ei hakka kunagi igav,"
+                                          "sest tema energia ja uudishimu on nakkav!")
+    elif tulemus == Sfinks: message = ("Sulle sobiks enim Sfinks!\n\n"
+                                       "Sfinksid on tõelised südamesõbrad: iseseisvad, ent samas äärmiselt hellad"
+                                       "ja tähelepanelikud. Nad armastavad inimeste ja teiste lemmikloomade"
+                                       "seltskonda ning ootavad sind rõõmsalt koju tulles ukse peale tervitama!"
+                                       "Sfinksid on intelligentsed, uudishimulikud ja mänguhimulised."
+                                       "Sfinksid naudivad paisid ja tihti leiab neid teki alt sinu kõrval magamas."
+                                       "Sfinksidel on peale kõige väga suur söögiisu ning nad armastavad sooja keskkonda.")
+    elif tulemus == Bengali_kass: message = ("Sulle sobiks enim Bengali kass!\n\n"
+                                             "Bengali kassid on väga sportlikud ja neile meeldib tänu oma"
+                                             "jahiinstinktile väga mängida, ronida ning maailma avastada."
+                                             "Inimesele on nad lojaalsed ja kiinduvad inimestesse sügavalt."
+                                             "Neile ei meeldi olla üksi - nad vajavad inimese või teise looma kohalolu."
+                                             "Nad on ka väga jutukad ja teevad äratuntavaid hääli, mis meenutavad metslooma omi!"
+                                             "Üllatuseks armastavad Bengali kassid vett, seega võid neid leida endaga koos duši alt.")
+    elif tulemus == Scottish_fold: message = ("Sulle sobiks enim Scottish Fold!\n\n"
+                                              "Iseloomult on nad väga rahulikud kassid ning ei torma kunagi kuhugi."
+                                              "Neil on enda rütm millele nad kindlaks jäävad ja ei lase teistel seda mõjutada,"
+                                              "nad tegutsevad pigem omaette. Olenemata sellest meeldib neile vahest ikka mängida"
+                                              "ning kui alustavad mängimist siis ikka täiega. Nad armastavad väga oma omanikult"
+                                              "tähelepanu saamist ning kaisutamist nii et hoia see kindlalt meeles!")
+    elif tulemus == Püha_birma: message = ("Sulle sobiks enim Püha Birma!\n\n"
+                                           "Iseloomult on nad väga sõbralikud ning uudishimulikud kassid."
+                                           "Tähelepanu ning hoolitsust vajavad pigem tihti, kuid see eest"
+                                           "on nad väga rahulikud ja sobilikud perele."
+                                           "Nad ei pelga võõraid inimesi ja armastavad tähelepanu saamist. Nad on alati valmis"
+                                           "sinuga mängima ja jutustama!")
+    elif tulemus == Meini_kass: message = ("Sulle sobiks enim Meini kass!\n\n"
+                                           "Sulle sobiks enim Meini kass!\nIseloomult on nad kohe hommikust saadik"
+                                           "energilised ning valmis päeva vallutama. Toas nad liiga kaua ei suvatse olla"
+                                           "ja vajav aeg ajalt õues mängimist. Tihti soovivad nad mängida ning sõltuvad"
+                                           "palju tähelepanust. Nad ei soovi väga pikaajaliselt üksi olla ehk"
+                                           "ole valmis jutukaks keskkonnaks!")
+    
+    #tulemus frame'i
+    tulemus_frame = tk.Frame(root)
+    tulemus_frame.pack(fill="both", expand=True)
+
+
+    tulemus_label = tk.Label(tulemus_frame, text=message, wraplength=600, font=("Garamond", 17), justify="center")
+    tulemus_label.pack(expand=True)
+
+# --- Funktsioon alustamisnupust ---
+def ava_viktoriin():
+    algusaken.pack_forget()      # peidab algus Frame
+    viktoriin_frame.pack(fill="both", expand=True)
+    kuva_kysimus()
+
+alusta_nupp = tk.Button(algusaken, text="Alusta", font=("Garamond", 16), command=ava_viktoriin)
+alusta_nupp.pack()
+
+
+root.mainloop()
