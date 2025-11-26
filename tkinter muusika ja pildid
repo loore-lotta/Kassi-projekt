@@ -241,7 +241,9 @@ def kuva_tulemus():
     title_label.pack()
 
     img = Image.open(pilt_fail)
-    img = img.resize((350, 350))
+    max_width = 350    
+    max_height = 350
+    img.thumbnail((max_width, max_height)) 
     tk_pilt = ImageTk.PhotoImage(img)
 
     pilt_silt = tk.Label(tulemus_frame, image=tk_pilt)
