@@ -1,0 +1,272 @@
+import tkinter as tk
+from tkinter import messagebox
+from PIL import Image, ImageTk
+
+# --- MUUSIKA IMPORTID ---
+import sounddevice as sd
+from scipy.io.wavfile import read
+import threading
+
+
+# --- MUUSIKA FUNKTSIOON ---
+def mängi_taustamuusikat():
+    try:
+        fs, data = read('taustamuusika.wav')  # WAV peab olema samas kaustas
+        while True:
+            sd.play(data, fs)
+            sd.wait()
+    except Exception as e:
+        print("Muusika ei käivitu:", e)
+
+
+# --- Viktoriini skoorid ---
+Siiami_kass = 0
+Sfinks = 0
+Bengali_kass = 0
+Scottish_fold = 0
+Püha_birma = 0
+Meini_kass = 0
+kysimus_index = 0
+
+
+# --- Küsimused ja vastused ---
+kysimused = [
+    ("Kuidas kirjeldaksid oma hommikuid?", [
+        "Ärkan vara ja olen kohe energiline",
+        "Võtan aega, et alustada päeva rahulikult",
+        "Vajan kohvi, et funktsioneerida",
+        "Lähen kohe seltskonda"]),
+    ("Mis kirjeldab sind kõige paremini?", [
+        "Sotsiaalne ja jutukas",
+        "Rahulik ja tasakaalukas",
+        "Uudishimulik ja seiklushimuline",
+        "Iseseisev ja enesekindel"]),
+    ("Kuidas sulle meeldib oma vaba aega veeta?", [
+        "Õues või trennis",
+        "Kodus diivanil sarja vaadates või raamatut lugedes",
+        "Seltskonnas – sõpradega juttu ajades",
+        "Omas tempos, omaette mõtteid mõlgutades"]),
+    ("Kui keegi katkestab su töö või keskendumise, mida sa teed?", [
+        "Jään rahulikuks ja lahendan olukorra",
+        "Ärritun veidi, aga ei pea pikka viha",
+        "Ei häiri, mul on alati energiat uueks tegevuseks",
+        "Proovin lihtsalt tagasi oma rütmi minna"]),
+    ("Mis tüüpi kodu sulle kõige rohkem sobib?", [
+        "Avar ja seltskonnarikas",
+        "Vaikne ja hubane pesa",
+        "Minimalistlik ja korras",
+        "Looduse lähedal, kus saab vabalt liikuda"]),
+    ("Kuidas reageerid uutele inimestele?", [
+        "Olen kohe sõbralik ja jutukas",
+        "Olen ettevaatlik, kuni tunnen neid paremini",
+        "Olen uudishimulik ja energiline",
+        "Ei ole väga huvitatud, eelistan tuttavat seltskonda"]),
+    ("Kui energiline sa oled?", [
+        "Väga aktiivne – vajan alati tegevust",
+        "Keskmine – naudin nii puhkust kui tegutsemist",
+        "Väga rahulik",
+        "Kõik sõltub tujust"]),
+    ("Kui iseseisev oled?", [
+        "Väga – mulle meeldib tegutseda omaette",
+        "Mõõdukalt – naudin seltskonda, aga ka oma aega",
+        "Vähe – tahan alati kellegagi koos olla",
+        "Pigem naudin liikumisvabadust ja spontaansust"]),
+    ("Kui palju sulle meeldib tähelepanu saada?", [
+        "Naudin, kui olen tähelepanu keskpunktis",
+        "Väärtustan, kui mind märgatakse, aga mitte üleliia",
+        "Ma eelistan olla vaikselt taustal",
+        "Sõltub päevast"]),
+    ("Milline ilm tundub sulle kõige mõnusam?", [
+        "Päikeseline ja soe",
+        "Kerge tuul ja kevadine värskus",
+        "Pilvine ja hubane",
+        "Vahelduv, natuke vihma ja päikest"]),
+    ("Mis sa teeksid, kui keegi sööb su friikartuli ilma luba küsimata?", [
+        "Vastan passiiv-agressiivselt",
+        "Vaikin ja plaanin kättemaksu",
+        "Naeran ja varastan nende jäätise tagasi",
+        "Vahet pole, friikartulid on nagunii ülehinnatud"]),
+    ("Kuidas reageerid, kui su äratuskell heliseb?", [
+        "Hüppan püsti nagu sai rösterist",
+        "Lükkan kella mitu tundi edasi",
+        "Võtan kohe telefoni, et sõnumitele vastata",
+        "Jään lihtsalt lebama ja teesklen, et maailm ei eksisteeri"]),
+    ("Kui sa oleksid toit, siis mis sa oleksid?", [
+        "Sushi – ilus, kallis ja kõik tahavad sind",
+        "Kartulipuder – rõõmsameelne ja leplik",
+        "Tuline karri – energiline ja ootamatu",
+        "Must kohv – lihtne, aga legendaarne"]),
+    ("Kui sa oleksid superkangelane, mis oleks su võime?", [
+        "Mõtete lugemine",
+        "Nähtamatuks muutumine",
+        "Superkiirus",
+        "Teleporteerumine"]),
+    ("Kui sulle antakse tasuta pilet kuhu iganes maailmas, kuhu sa lähed?", [
+        "Taisse",
+        "Šotimaale",
+        "Indoneesiasse",
+        "Spaasse"]),
+    ("Mis on sinu lemmikhobi?", [
+        "Saladuste välja nuhkimine",
+        "Magamine",
+        "Midagi adrenaliini pakkuvat",
+        "Jooga"])
+]
+
+
+vastuste_skoorid = [
+    [("Bengali_kass",1), ("Meini_kass",1), None, ("Siiami_kass",1)],
+    [("Siiami_kass",1), None, ("Bengali_kass",1), ("Sfinks",1)],
+    [("Bengali_kass",1), ("Püha_birma",1), ("Siiami_kass",1), ("Sfinks",1)],
+    [("Püha_birma",1), ("Siiami_kass",1), ("Sfinks",1), ("Scottish_fold",1)],
+    [("Meini_kass",1), ("Püha_birma",1), ("Sfinks",1), ("Bengali_kass",1)],
+    [("Siiami_kass",1), ("Sfinks",1), ("Bengali_kass",1), ("Meini_kass",1)],
+    [("Bengali_kass",1), ("Püha_birma",1), ("Scottish_fold",1), ("Siiami_kass",1)],
+    [("Sfinks",1), ("Püha_birma",1), ("Siiami_kass",1), ("Bengali_kass",1)],
+    [("Siiami_kass",1), ("Püha_birma",1), ("Scottish_fold",1), ("Bengali_kass",1)],
+    [("Sfinks",1), ("Bengali_kass",1), ("Scottish_fold",1), ("Sfinks",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Sfinks",1)],
+    [("Bengali_kass",1), ("Scottish_fold",1), ("Siiami_kass",1), ("Sfinks",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Sfinks",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Püha_birma",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Püha_birma",1)],
+    [("Siiami_kass",1), ("Scottish_fold",1), ("Bengali_kass",1), ("Meini_kass",1)]
+]
+
+
+# --- Peaaken ---
+root = tk.Tk()
+root.title("Kassiviktoriin")
+root.geometry("800x700")
+
+# --- Käivitame muusika ---
+threading.Thread(target=mängi_taustamuusikat, daemon=True).start()
+
+# --- Algusaken ---
+algusaken = tk.Frame(root)
+algusaken.pack(fill="both", expand=True)
+
+pealkiri = tk.Label(algusaken, text="Tere tulemast kassitinderisse!", font=("Garamond", 22))
+pealkiri.pack(pady=50)
+
+viktoriin_frame = tk.Frame(root)
+
+kysimus_label = tk.Label(viktoriin_frame, text="", wraplength=700, font=("Garamond", 18))
+kysimus_label.pack(pady=20)
+
+vastuse_nupud = []
+def valik(i): pass
+for i in range(4):
+    btn = tk.Button(viktoriin_frame, text="", width=60, font=("Garamond", 16), command=lambda i=i: valik(i))
+    btn.pack(pady=6)
+    vastuse_nupud.append(btn)
+
+
+# --- Funktsioonid ---
+def kuva_kysimus():
+
+    kysimus_label.config(text=kysimused[kysimus_index][0])
+    for i, btn in enumerate(vastuse_nupud):
+        btn.config(text=kysimused[kysimus_index][1][i])
+
+
+def valik(nupp_index):
+    global Siiami_kass, Sfinks, Bengali_kass, Scottish_fold, Püha_birma, Meini_kass, kysimus_index
+
+    kass_skoor = vastuste_skoorid[kysimus_index][nupp_index]
+    if kass_skoor:
+        kass, pts = kass_skoor
+        globals()[kass] += pts
+
+    kysimus_index += 1
+
+    if kysimus_index < len(kysimused):
+        kuva_kysimus()
+    else:
+        kuva_tulemus()
+
+
+# --- TULEMUS ---
+def kuva_tulemus():
+    global Siiami_kass, Sfinks, Bengali_kass, Scottish_fold, Püha_birma, Meini_kass
+
+    for btn in vastuse_nupud:
+        btn.pack_forget()
+    kysimus_label.pack_forget()
+    viktoriin_frame.pack_forget()
+
+    tulemus = max(Siiami_kass, Sfinks, Bengali_kass, Scottish_fold, Püha_birma, Meini_kass)
+
+    if tulemus == Siiami_kass:
+        pilt_fail = "pilt_Siiam.jpg"
+        pealkiri = "Sulle sobiks enim Siiami kass!"
+        kirjeldus = (
+            "Siiami kassid on tõelised seltsimehed – jutukad, tähelepanelikud ja armastavad sinu seltskonda! Nad on sõbralikud, hellad ja armastavad pere lähedust – nad tahavad olla sinu elu lahutamatu osa. Üksi olemine ei ole nende teema: nad ihkavad pidevalt inimese või teise kassi kohalolu. Lisaks on nad nutikad ja mänguhimulised – kraapimispostid, mänguasjad ja isegi trikkide õpetamine hoiavad neid õnnelikuna. Siiami kassiga ei hakka kunagi igav, sest tema energia ja uudishimu on nakkav!"
+        )
+    elif tulemus == Sfinks:
+        pilt_fail = "pilt_Sfinks.jpg"
+        pealkiri = "Sulle sobiks enim Sfinks!"
+        kirjeldus = (
+            "Sfinksid on tõelised südamesõbrad: iseseisvad, ent samas äärmiselt hellad ja tähelepanelikud. Nad armastavad inimeste ja teiste lemmikloomade seltskonda ning ootavad sind rõõmsalt koju tulles ukse peale tervitama! Sfinksid on intelligentsed, uudishimulikud ja mänguhimulised. Sfinksid naudivad paisid ja tihti leiab neid teki alt sinu kõrval magamas. Sfinksidel on peale kõige väga suur söögiisu ning nad armastavad sooja keskkonda."
+        )
+    elif tulemus == Bengali_kass:
+        pilt_fail = "pilt_Bengali.jpg"
+        pealkiri = "Sulle sobiks enim Bengali kass!"
+        kirjeldus = (
+            "Bengali kassid on väga sportlikud ja neile meeldib tänu oma jahiinstinktile väga mängida, ronida ning maailma avastada. Inimesele on nad lojaalsed ja kiinduvad inimestesse sügavalt. Neile ei meeldi olla üksi - nad vajavad inimese või teise looma kohalolu. Nad on ka väga jutukad ja teevad äratuntavaid hääli, mis meenutavad metslooma omi! Üllatuseks armastavad Bengali kassid vett, seega võid neid leida endaga koos duši alt."
+        )
+    elif tulemus == Scottish_fold:
+        pilt_fail = "pilt_Scot.jpg"
+        pealkiri = "Sulle sobiks enim Scottish Fold!"
+        kirjeldus = (
+            "Iseloomult on nad väga rahulikud kassid ning ei torma kunagi kuhugi. Neil on enda rütm millele nad kindlaks jäävad ja ei lase teistel seda mõjutada, nad tegutsevad pigem omaette. Olenemata sellest meeldib neile vahest ikka mängida ning kui alustavad mängimist siis ikka täiega. Nad armastavad väga oma omanikult tähelepanu saamist ning kaisutamist nii et hoia see kindlalt meeles!"
+        )
+    elif tulemus == Püha_birma:
+        pilt_fail = "pilt_Birma.jpg"
+        pealkiri = "Sulle sobiks enim Püha Birma!"
+        kirjeldus = (
+            "Iseloomult on nad väga sõbralikud ning uudishimulikud kassid. Tähelepanu ning hoolitsust vajavad pigem tihti, kuid see eest on nad väga rahulikud ja sobilikud perele. Nad ei pelga võõraid inimesi ja armastavad tähelepanu saamist. Nad on alati valmis sinuga mängima ja jutustama!"
+        )
+    else:
+        pilt_fail = "pilt_Meini.jpg"
+        pealkiri = "Sulle sobiks enim Meini kass!"
+        kirjeldus = (
+            "Iseloomult on nad kohe hommikust saadik energilised ning valmis päeva vallutama. Toas nad liiga kaua ei suvatse olla ja vajav aeg ajalt õues mängimist. Tihti soovivad nad mängida ning sõltuvad palju tähelepanust. Nad ei soovi väga pikaajaliselt üksi olla ehk ole valmis jutukaks keskkonnaks!"
+        )
+
+    tulemus_frame = tk.Frame(root)
+    tulemus_frame.pack(fill="both", expand=True)
+
+    title_label = tk.Label(tulemus_frame, text=pealkiri, font=("Garamond", 26, "bold"), pady=20)
+    title_label.pack()
+
+    img = Image.open(pilt_fail)
+    img = img.resize((350, 350))
+    tk_pilt = ImageTk.PhotoImage(img)
+
+    pilt_silt = tk.Label(tulemus_frame, image=tk_pilt)
+    pilt_silt.image = tk_pilt
+    pilt_silt.pack(pady=10)
+
+    kirjeldus_silt = tk.Label(
+        tulemus_frame,
+        text=kirjeldus,
+        wraplength=650,
+        justify="center",
+        font=("Garamond", 16),
+        pady=10
+    )
+    kirjeldus_silt.pack()
+
+
+def ava_viktoriin():
+    algusaken.pack_forget()
+    viktoriin_frame.pack(fill="both", expand=True)
+    kuva_kysimus()
+
+
+alusta_nupp = tk.Button(algusaken, text="Alusta", font=("Garamond", 18), command=ava_viktoriin)
+alusta_nupp.pack()
+
+root.mainloop()
+
