@@ -138,33 +138,34 @@ vastuste_skoorid = [
 root = tk.Tk()
 root.title("Kassiviktoriin")
 root.geometry("800x700")
+root.configure(bg="#FFC0CB")
 
 # Muusika käivitus
 threading.Thread(target=mängi_taustamuusikat, daemon=True).start()
 
 # Algusaken
-algusaken = tk.Frame(root)
+algusaken = tk.Frame(root, bg="#FFC0CB")
 algusaken.pack(fill="both", expand=True)
 
-pealkiri = tk.Label(algusaken, text="Tere tulemast kassitinderisse!", font=("Garamond", 22))
+pealkiri = tk.Label(algusaken, text="Tere tulemast kassitinderisse!", font=("Garamond", 22, "bold"), bg="#FFC0CB")
 pealkiri.pack(pady=50)
 
-viktoriin_frame = tk.Frame(root)
+viktoriin_frame = tk.Frame(root, bg="#FFC0CB")
 
-kysimus_label = tk.Label(viktoriin_frame, text="", wraplength=700, font=("Garamond", 18))
+kysimus_label = tk.Label(viktoriin_frame, text="", wraplength=700, font=("Garamond", 18, "bold"), bg="#FFC0CB")
 kysimus_label.pack(pady=20)
 
 vastuse_nupud = []
 def valik(i): pass
 for i in range(4):
-    btn = tk.Button(viktoriin_frame, text="", width=60, font=("Garamond", 16), command=lambda i=i: valik(i))
+    btn = tk.Button(viktoriin_frame, text="", width=60, font=("Garamond", 16), bg="#FFA6C1", fg="black", command=lambda i=i: valik(i))
     btn.pack(pady=6)
     vastuse_nupud.append(btn)
 
 
 def kuva_kysimus():
 
-    kysimus_label.config(text=kysimused[kysimus_index][0])
+    kysimus_label.config(text=f"🎀 {kysimused[kysimus_index][0]} 🎀 ")
     for i, btn in enumerate(vastuse_nupud):
         btn.config(text=kysimused[kysimus_index][1][i])
 
@@ -233,10 +234,10 @@ def kuva_tulemus():
             "Iseloomult on nad kohe hommikust saadik energilised ning valmis päeva vallutama. Toas nad liiga kaua ei suvatse olla ja vajav aeg ajalt õues mängimist. Tihti soovivad nad mängida ning sõltuvad palju tähelepanust. Nad ei soovi väga pikaajaliselt üksi olla ehk ole valmis jutukaks keskkonnaks!"
         )
 
-    tulemus_frame = tk.Frame(root)
+    tulemus_frame = tk.Frame(root, bg="#FFC0CB")
     tulemus_frame.pack(fill="both", expand=True)
 
-    title_label = tk.Label(tulemus_frame, text=pealkiri, font=("Garamond", 26, "bold"), pady=20)
+    title_label = tk.Label(tulemus_frame, text=f"🎉 {pealkiri}", font=("Garamond", 26, "bold"), pady=20, bg="#FFC0CB")
     title_label.pack()
 
     img = Image.open(pilt_fail)
@@ -245,7 +246,7 @@ def kuva_tulemus():
     img.thumbnail((max_width, max_height)) 
     tk_pilt = ImageTk.PhotoImage(img)
 
-    pilt_silt = tk.Label(tulemus_frame, image=tk_pilt)
+    pilt_silt = tk.Label(tulemus_frame, image=tk_pilt, bg="#FFC0CB")
     pilt_silt.image = tk_pilt
     pilt_silt.pack(pady=10)
 
@@ -255,7 +256,8 @@ def kuva_tulemus():
         wraplength=650,
         justify="center",
         font=("Garamond", 16),
-        pady=10
+        pady=10,
+        bg="#FFC0CB"
     )
     kirjeldus_silt.pack()
 
@@ -266,8 +268,7 @@ def ava_viktoriin():
     kuva_kysimus()
 
 
-alusta_nupp = tk.Button(algusaken, text="Alusta", font=("Garamond", 18), command=ava_viktoriin)
+alusta_nupp = tk.Button(algusaken, text="Alusta", font=("Garamond", 18), bg="#FFA6C1", fg="black", command=ava_viktoriin)
 alusta_nupp.pack()
 
 root.mainloop()
-
