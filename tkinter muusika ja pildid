@@ -2,13 +2,13 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 
-# --- MUUSIKA IMPORTID ---
+# Muusika imports
 import sounddevice as sd
 from scipy.io.wavfile import read
 import threading
 
 
-# --- MUUSIKA FUNKTSIOON ---
+# Muusika 
 def mängi_taustamuusikat():
     try:
         fs, data = read('taustamuusika.wav')  # WAV peab olema samas kaustas
@@ -19,7 +19,7 @@ def mängi_taustamuusikat():
         print("Muusika ei käivitu:", e)
 
 
-# --- Viktoriini skoorid ---
+# Viktoriini skoorid
 Siiami_kass = 0
 Sfinks = 0
 Bengali_kass = 0
@@ -29,7 +29,7 @@ Meini_kass = 0
 kysimus_index = 0
 
 
-# --- Küsimused ja vastused ---
+# Küs ja Vas
 kysimused = [
     ("Kuidas kirjeldaksid oma hommikuid?", [
         "Ärkan vara ja olen kohe energiline",
@@ -134,15 +134,15 @@ vastuste_skoorid = [
 ]
 
 
-# --- Peaaken ---
+# Peaaken
 root = tk.Tk()
 root.title("Kassiviktoriin")
 root.geometry("800x700")
 
-# --- Käivitame muusika ---
+# Muusika käivitus
 threading.Thread(target=mängi_taustamuusikat, daemon=True).start()
 
-# --- Algusaken ---
+# Algusaken
 algusaken = tk.Frame(root)
 algusaken.pack(fill="both", expand=True)
 
@@ -162,7 +162,6 @@ for i in range(4):
     vastuse_nupud.append(btn)
 
 
-# --- Funktsioonid ---
 def kuva_kysimus():
 
     kysimus_label.config(text=kysimused[kysimus_index][0])
@@ -186,7 +185,7 @@ def valik(nupp_index):
         kuva_tulemus()
 
 
-# --- TULEMUS ---
+# Tulemus
 def kuva_tulemus():
     global Siiami_kass, Sfinks, Bengali_kass, Scottish_fold, Püha_birma, Meini_kass
 
